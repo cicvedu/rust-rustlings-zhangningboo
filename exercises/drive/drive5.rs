@@ -4,7 +4,6 @@
 // code in the testcase should call the same function.
 // You should not modify any existing code. All you need to do is add two line of attributes.
 
-
 extern {
     fn my_demo_function(a:u32) -> u32;
     #[link_name = "my_demo_function"]
