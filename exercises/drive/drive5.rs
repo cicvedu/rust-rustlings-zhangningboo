@@ -7,18 +7,23 @@
 
 extern {
     fn my_demo_function(a:u32) -> u32;
+    #[link_name = "my_demo_function"]
     fn my_demo_function_alias(a:u32) -> u32;
 }
 
+
+
+
 mod Foo{
-    pub(crate) fn my_demo_function(a:u32) -> u32 {a}
+    #[no_mangle]
+    fn my_demo_function(a:u32) -> u32 {a}
 }
+
+
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use super::Foo::my_demo_function;
-    use super::Foo::my_demo_function as my_demo_function_alias;
 
     #[test]
     fn test_success() {
