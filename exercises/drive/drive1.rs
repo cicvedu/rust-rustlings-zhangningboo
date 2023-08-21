@@ -3,11 +3,15 @@
 // Execute `rustlings hint drive1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn modify_by_address(address: usize) {
     // `address` is a memory address, there is an u32 at that address. try modify
     // the u32's value to 0xAABBCCDD
+    // 将传入的内存地址转换为可变指针，然后通过该指针修改 u32 的值
+    let ptr = address as *mut u32;
+    unsafe {
+        // 使用 unsafe 块，因为修改内存需要显式的 unsafe 代码块
+        *ptr = 0xAABBCCDD;
+    }
 }
 
 
