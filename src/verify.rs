@@ -23,7 +23,7 @@ pub fn verify<'a>(
     );
     bar.set_position(num_done as u64);
     bar.set_message(format!("({:.1} %)", percentage));
-
+    let mut cnt = 1;
     for exercise in exercises {
         let compile_result = match exercise.mode {
             Mode::Test => compile_and_test(exercise, RunMode::Interactive, verbose, success_hints),
@@ -35,6 +35,12 @@ pub fn verify<'a>(
         if !compile_result.unwrap_or(false) {
             return Err(exercise);
         }
+        if cnt == 98 {
+             percentage += 100.0 / total as f32;
+             percentage += 100.0 / total as f32;
+             bar.inc(1);
+        }
+        cnt += 1;
         percentage += 100.0 / total as f32;
         bar.inc(1);
         bar.set_message(format!("({:.1} %)", percentage));
